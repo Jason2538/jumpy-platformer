@@ -27,7 +27,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Bumper, function (sprite, otherS
         music.powerUp.play()
     } else {
         info.changeLifeBy(-1)
-        sprite.say("Ow!", invincibilityPeriod)
+        sprite.say("으악!", invincibilityPeriod)
         music.powerDown.play()
     }
     pause(invincibilityPeriod)
@@ -233,7 +233,7 @@ function attemptJump () {
     }
 }
 function animateIdle () {
-    mainIdleLeft = animation.createAnimation(ActionKind.IdleLeft, 100)
+    mainIdleLeft = animation.createAnimation(ActionKind.IdleLeft, 5000)
     animation.attachAnimation(hero, mainIdleLeft)
     mainIdleLeft.addAnimationFrame(img`
         . . . . . . . . . . . . . . . . 
@@ -253,7 +253,7 @@ function animateIdle () {
         . . . f a a b f f a a b f . . . 
         . . . . f f f . . f f f . . . . 
         `)
-    mainIdleRight = animation.createAnimation(ActionKind.IdleRight, 100)
+    mainIdleRight = animation.createAnimation(ActionKind.IdleRight, 5000)
     animation.attachAnimation(hero, mainIdleRight)
     mainIdleRight.addAnimationFrame(img`
         . . . . . . . . . . . . . . . . 
@@ -707,7 +707,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`tile1`, function (sprite, loc
     info.changeLifeBy(1)
     currentLevel += 1
     if (hasNextLevel()) {
-        game.splash("Next level unlocked!")
+        game.splash("다음레벨로 갑시다")
         setLevelTileMap(currentLevel)
     } else {
         game.over(true, effects.confetti)
@@ -715,7 +715,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`tile1`, function (sprite, loc
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Flier, function (sprite, otherSprite) {
     info.changeLifeBy(-1)
-    sprite.say("Ow!", invincibilityPeriod * 1.5)
+    sprite.say("으악!", invincibilityPeriod * 1.5)
     music.powerDown.play()
     pause(invincibilityPeriod * 1.5)
 })
@@ -860,24 +860,7 @@ let gravity = 0
 let pixelsToMeters = 0
 let invincibilityPeriod = 0
 let hero: Sprite = null
-hero = sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . f f f f f f f f f f . . . 
-    . . f e e e e e e e e e e f . . 
-    . f e e e e e e e e e e e e f . 
-    . f d e e d d d d d d d d d f . 
-    . f d e d d f d d d d f d d f . 
-    . f e d d d f d d d d f d d f . 
-    . . f d d d f d d d d f d d f . 
-    . . f d d d d d d d d d d d f . 
-    . . f b a c c c c c c c c a f . 
-    . . f d d d c c c c c c d d f . 
-    . . f d d f f f b b f f f d f . 
-    . . f b a a a a a a a a a f . . 
-    . . . f b a a f f b a a f . . . 
-    . . . f b a a f f b a a f . . . 
-    . . . . f f f . . f f f . . . . 
-    `, SpriteKind.Player)
+hero = sprites.create(assets.image`256`, SpriteKind.Player)
 // how long to pause between each contact with a
 // single enemy
 invincibilityPeriod = 600
