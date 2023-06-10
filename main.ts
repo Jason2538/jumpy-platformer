@@ -20,7 +20,7 @@ namespace SpriteKind {
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Bumper, function (sprite, otherSprite) {
     if (sprite.vy > 0 && !(sprite.isHittingTile(CollisionDirection.Bottom)) || sprite.y < otherSprite.top) {
-        otherSprite.destroy(effects.ashes, 250)
+        otherSprite.destroy(effects.ashes, 500)
         otherSprite.vy = -50
         sprite.vy = -2 * pixelsToMeters
         info.changeScoreBy(1)
@@ -233,7 +233,7 @@ function attemptJump () {
     }
 }
 function animateIdle () {
-    mainIdleLeft = animation.createAnimation(ActionKind.IdleLeft, 5000)
+    mainIdleLeft = animation.createAnimation(ActionKind.IdleLeft, 10000000)
     animation.attachAnimation(hero, mainIdleLeft)
     mainIdleLeft.addAnimationFrame(img`
         . . . . . . . . . . . . . . . . 
@@ -253,7 +253,7 @@ function animateIdle () {
         . . . f a a b f f a a b f . . . 
         . . . . f f f . . f f f . . . . 
         `)
-    mainIdleRight = animation.createAnimation(ActionKind.IdleRight, 5000)
+    mainIdleRight = animation.createAnimation(ActionKind.IdleRight, 10000000)
     animation.attachAnimation(hero, mainIdleRight)
     mainIdleRight.addAnimationFrame(img`
         . . . . . . . . . . . . . . . . 
